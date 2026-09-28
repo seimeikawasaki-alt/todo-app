@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="タスクの登録・期限・カテゴリ・優先度・完了状況を管理できるToDo管理アプリ">
+  <title>ToDo管理アプリ</title>
+  <link rel="stylesheet" href="css/style.css?v=20260928d">
+</head>
+<body>
+  <!-- アイコン（インラインSVG。外部のファイルは読み込まない） -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+    <symbol id="i-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4-2v-4z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M3 13l3-8h12l3 8v6H3z"/><path d="M3 13h5l1 3h6l1-3h5"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">メインの内容へ移動</a>
+
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="メインメニュー">
+      <div class="brand">ToDo管理アプリ</div>
+      <nav class="nav-list" id="nav-list" aria-label="画面の切り替え"></nav>
+    </aside>
+
+    <main class="main" id="main">
+      <header class="mobile-header">ToDo管理アプリ</header>
+      <div class="mobile-toolbar" id="mobile-toolbar"></div>
+
+      <section id="view-list" class="view" aria-label="リスト" hidden></section>
+      <section id="view-week" class="view" aria-label="週表示" hidden></section>
+      <section id="view-dashboard" class="view" aria-label="集計" hidden></section>
+      <section id="view-projects" class="view" aria-label="プロジェクト" hidden></section>
+
+      <noscript><p class="noscript">このアプリを使うには、ブラウザのJavaScriptを有効にしてください。</p></noscript>
+    </main>
+
+    <button class="btn btn--primary fab" id="fab" type="button">
+      <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>タスクを追加
+    </button>
+    <nav class="mobile-tabs" id="mobile-tabs" aria-label="画面の切り替え"></nav>
+  </div>
+
+  <!-- 読み込む順番に意味がある（後のファイルが前のファイルの機能を使う）
+       ?v= の数字は版番号。ファイルを更新したら数字を変えると、ブラウザが古いファイルを使わずに読み込み直す -->
+  <script src="js/date-utils.js?v=20260928d"></script>
+  <script src="js/holidays.js?v=20260928d"></script>
+  <script src="js/storage.js?v=20260928d"></script>
+  <script src="js/tasks.js?v=20260928d"></script>
+  <script src="js/ui.js?v=20260928d"></script>
+  <script src="js/datepicker.js?v=20260928d"></script>
+  <script src="js/task-form.js?v=20260928d"></script>
+  <script src="js/task-dialogs.js?v=20260928d"></script>
+  <script src="js/list-view.js?v=20260928d"></script>
+  <script src="js/week-view.js?v=20260928d"></script>
+  <script src="js/dashboard-view.js?v=20260928d"></script>
+  <script src="js/projects-view.js?v=20260928d"></script>
+  <script src="js/app.js?v=20260928d"></script>
+</body>
+</html>
