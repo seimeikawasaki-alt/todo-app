@@ -25,7 +25,6 @@
     const titleId = `editor-title-${uid}`;
     let modal = null;
     const form = App.TaskForm.createTaskFields({
-      layout: 'stacked',
       weekStart: () => T.getData().settings.weekStart,
     });
     const f = form.fields;

@@ -64,7 +64,6 @@ a { color: inherit; }
 h1, h2, h3 { line-height: 1.3; }
 .icon { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .muted { color: var(--muted); }
-.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .skip-link { position: absolute; left: 8px; top: -60px; z-index: 200; padding: 10px 14px; border-radius: 8px; color: #fff; background: var(--navy); }
 .skip-link:focus { top: 8px; }
 .noscript { padding: 20px; }
@@ -296,7 +295,6 @@ textarea.control { min-height: 76px; padding: 10px 12px; resize: vertical; }
 .due__rest--overdue { color: var(--danger-text); }
 .due__rest--soon { color: var(--warning); }
 .labels { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-width: 0; }
-.status { justify-self: start; }
 .task-actions { grid-area: actions; display: flex; gap: 6px; }
 
 /* 一覧の幅が狭いとき（詳細パネルを開いたときなど）は2段にする */
@@ -424,7 +422,7 @@ textarea.control { min-height: 76px; padding: 10px 12px; resize: vertical; }
     grid-template-areas: "check main chevron" "check meta chevron";
     column-gap: 8px; row-gap: 4px; min-height: 72px; padding: 8px 0 8px 4px;
   }
-  .task-detail, .task-actions, .task-meta .project, .task-row:not(.task-row--completed) .status { display: none; }
+  .task-detail, .task-actions, .task-meta .project { display: none; }
   .task-open { width: 100%; min-height: 44px; }
   .task-meta { display: flex; flex-wrap: wrap; gap: 6px; }
   .due { display: flex; flex-wrap: wrap; gap: 4px 8px; width: 100%; white-space: normal; }

@@ -290,11 +290,10 @@
       onclick: (e) => { e.stopPropagation(); App.selectTask(task.id); },
     },
     el('span', { class: 'wtask__title' },
+      // 完了済みは「✓」と取り消し線で区別する（列の幅が狭いので「完了」ラベルは付けない。詳細パネルには状態を表示する）
       overdue ? el('span', { 'aria-hidden': 'true', text: '⚠' }) : task.completed ? el('span', { 'aria-hidden': 'true', text: '✓' }) : null,
       el('span', { class: 'wtask__text', text: task.title }),
-      task.priority === 'high' && !compact ? el('span', { class: 'badge badge--high', text: '高' }) : null,
-      // 完了済みは「✓」と取り消し線で区別する（列の幅が狭いので「完了」ラベルは付けない。詳細パネルには状態を表示する）
-      null));
+      task.priority === 'high' && !compact ? el('span', { class: 'badge badge--high', text: '高' }) : null));
     if (!compact) {
       const meta = overdue && r
         ? el('span', { class: 'wtask__meta wtask__meta--overdue', text: `期限切れ（${r.text}）` })
@@ -316,7 +315,6 @@
         onclick: () => { closePopover(); App.selectTask(t.id); },
       }, t.completed ? '✓ ' : D.isOverdue(t, now) ? '⚠ ' : '', el('span', { text: t.title }), t.priority === 'high' ? el('span', { class: 'badge badge--high', text: '高' }) : null)))),
       el('button', { class: 'btn btn--small', type: 'button', text: '閉じる', onclick: () => closePopover(true) }));
-    popover.dataset.for = '1';
     document.body.append(popover);
     const rect = button.getBoundingClientRect();
     const width = 260;

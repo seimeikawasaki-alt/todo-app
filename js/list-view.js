@@ -22,7 +22,6 @@
 
     // 登録フォーム（PC）
     quickForm = App.TaskForm.createTaskFields({
-      layout: 'inline',
       weekStart: () => T.getData().settings.weekStart,
     });
     const f = quickForm.fields;

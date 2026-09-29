@@ -7,7 +7,7 @@
 (function (App) {
   'use strict';
 
-  const { el, icon, clear, openModal, toast, media } = App.UI;
+  const { el, icon, openModal, toast, media } = App.UI;
   const T = App.Tasks;
 
   const VIEWS = [

@@ -2,7 +2,7 @@
  * タスクの入力欄（登録フォーム・編集モーダル・スマホの登録画面で共通）
  *
  * createTaskFields(options) で入力欄をまとめて作り、
- * getValues() / setValues() / showErrors() / reset() で操作する。
+ * getValues() / setValues() / showErrors() / resetAfterAdd() / refreshProjects() で操作する。
  */
 (function (App) {
   'use strict';
@@ -24,7 +24,7 @@
   }
 
   /**
-   * options: { layout: 'inline' | 'stacked', weekStart: () => 設定値 }
+   * options: { weekStart: () => 週の始まりの設定値 }
    */
   function createTaskFields(options) {
     uid += 1;
