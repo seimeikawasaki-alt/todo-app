@@ -27,7 +27,6 @@
     const form = App.TaskForm.createTaskFields({
       layout: 'stacked',
       weekStart: () => T.getData().settings.weekStart,
-      onSubmit: submit,
     });
     const f = form.fields;
 

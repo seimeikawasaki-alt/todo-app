@@ -24,7 +24,7 @@
   }
 
   /**
-   * options: { layout: 'inline' | 'stacked', weekStart: () => 設定値, onSubmit }
+   * options: { layout: 'inline' | 'stacked', weekStart: () => 設定値 }
    */
   function createTaskFields(options) {
     uid += 1;
@@ -37,12 +37,11 @@
       placeholder: '例）企画書を作成する', 'aria-required': 'true', 'aria-describedby': `${p}-title-error`,
     });
     const titleError = el('p', { class: 'error-text', id: `${p}-title-error`, hidden: true });
-    // 日本語入力の変換を確定するための Enter では登録しない
+    // Enter キーでは登録しない（押し間違いで登録されるのを防ぐため。登録は「追加」「保存」ボタンで行う）
+    // フォームの中の入力欄で Enter を押すと、ブラウザが自動で送信するため、それを止める
+    // （日本語入力の変換を確定する Enter は、文字の確定に使うのでそのままにする）
     titleInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.isComposing && e.keyCode !== 229 && options.onSubmit) {
-        e.preventDefault();
-        options.onSubmit();
-      }
+      if (e.key === 'Enter' && !e.isComposing && e.keyCode !== 229) e.preventDefault();
     });
     titleInput.addEventListener('input', () => { if (titleInput.value.trim()) setError(titleInput, titleError, ''); });
 

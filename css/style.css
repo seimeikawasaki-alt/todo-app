@@ -260,24 +260,18 @@ textarea.control { min-height: 76px; padding: 10px 12px; resize: vertical; }
 .task-row--completed { background: #f6f8fb; color: var(--completed); }
 .task-row--completed .task-title-text { text-decoration: line-through; }
 
-/* 完了の切り替え：丸（チェックの印が薄く見える）＋ 下に今の状態の文字 */
-.check-button {
+/* 状態の表示：丸（完了は緑のチェック）＋ 下に今の状態の文字。表示だけで、押しても切り替わらない */
+.status-mark {
   grid-area: check; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
-  width: 52px; min-height: 52px; padding: 2px 0; border: 0; border-radius: 10px; background: transparent;
+  width: 52px; min-height: 52px; padding: 2px 0;
 }
-.check-button:hover { background: var(--success-soft); }
-.check-button__circle {
-  width: 26px; height: 26px; border: 2px solid #52657c; border-radius: 50%;
-  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%23b8c3d1' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat;
-  transition: background-color .15s, border-color .15s;
-}
-.check-button:hover .check-button__circle { border-color: var(--success); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%231f7a4d' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
-.check-button.is-done .check-button__circle {
+.status-mark__circle { width: 26px; height: 26px; border: 2px solid #8a99ad; border-radius: 50%; background: #fff; }
+.status-mark.is-done .status-mark__circle {
   border-color: var(--success);
   background: var(--success) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat;
 }
-.check-button__label { font-size: 12px; font-weight: 800; line-height: 1.2; color: #42546b; white-space: nowrap; }
-.check-button.is-done .check-button__label { color: var(--success); }
+.status-mark__label { font-size: 12px; font-weight: 800; line-height: 1.2; color: #42546b; white-space: nowrap; }
+.status-mark.is-done .status-mark__label { color: var(--success); }
 
 /* 文字付きの完了ボタン */
 .btn--complete { color: var(--success); border-color: #9fd3b5; background: #fff; }

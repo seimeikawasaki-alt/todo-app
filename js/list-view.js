@@ -24,7 +24,6 @@
     quickForm = App.TaskForm.createTaskFields({
       layout: 'inline',
       weekStart: () => T.getData().settings.weekStart,
-      onSubmit: submitQuickAdd,
     });
     const f = quickForm.fields;
     const quickAdd = el('form', { class: 'card quick-add', 'aria-label': 'タスクを追加', novalidate: true, onsubmit: (e) => { e.preventDefault(); submitQuickAdd(); } },
@@ -243,14 +242,11 @@
       dataset: { id: task.id },
     });
 
-    // 左端の丸：押すと完了⇔未完了が切り替わる。丸の下に今の状態（未完了／完了）を文字で表示する
-    const toggle = el('button', {
-      class: `check-button ${task.completed ? 'is-done' : ''}`, type: 'button',
-      title: task.completed ? '押すと未完了に戻します' : '押すと完了にします',
-      'aria-label': task.completed ? `完了済み。「${task.title}」を未完了に戻す` : `未完了。「${task.title}」を完了にする`,
-      'aria-pressed': task.completed ? 'true' : 'false',
-      onclick: () => Dialogs.toggleWithUndo(task.id),
-    }, el('span', { class: 'check-button__circle', 'aria-hidden': 'true' }), el('span', { class: 'check-button__label', 'aria-hidden': 'true', text: task.completed ? '完了' : '未完了' }));
+    // 左端の丸：今の状態（未完了／完了）を示す表示だけ。押しても切り替わらない（押し間違いを防ぐため）
+    // 切り替えは「✓ 完了にする」「↺ 未完了に戻す」のボタンで行う
+    const status = el('span', { class: `status-mark ${task.completed ? 'is-done' : ''}` },
+      el('span', { class: 'status-mark__circle', 'aria-hidden': 'true' }),
+      el('span', { class: 'status-mark__label', text: task.completed ? '完了' : '未完了' }));
 
     const open = el('button', {
       class: 'task-open', type: 'button', 'aria-label': `「${task.title}」の詳細を開く`,
@@ -271,7 +267,7 @@
       task.category === 'work' ? Dialogs.projectLabel(task.projectId) : null);
 
     row.append(
-      toggle,
+      status,
       el('div', { class: 'task-main' }, el('h3', { class: 'task-title' }, open), detail),
       el('div', { class: 'task-meta' },
         el('div', { class: 'due' }, dueDateEl, Dialogs.remainingLabel(task, now)),
